@@ -1,0 +1,5 @@
+export { default as AnimeDetailPages } from "./AnimeDetailPages"
+export { default as AnimePages } from "./AnimePages"
+export { default as AnimeNotFoundPages } from "./AnimeNotFoundPages"
+export { default as AnimeErrorPages } from "./AnimeErrorPages"
+export { default as NotFoundPages } from "./NotFoundPages"
