@@ -38,10 +38,10 @@ const AnimeDetailPages = () => {
 
   const { data: selectedAnime, isLoading, error } = useAnimeDetail(Number(id))
 
-  const handleBack = () => {
+  const handleBack = async () => {
     dispatch(setSearchQuery(""))
     dispatch(setPage(1))
-    navigate(`/?page=1`)
+    await navigate(`/?page=1`)
   }
 
   if (isLoading) {
@@ -95,13 +95,13 @@ const AnimeDetailPages = () => {
       <BreadCrumbs
         title={title}
         title_english={title_english}
-        handleBack={handleBack}
+        handleBack={() => void handleBack}
       />
 
       {/* Back Button */}
       <GlassButton
         startIcon={<ArrowBackIcon />}
-        onClick={handleBack}
+        onClick={void handleBack}
         sx={{ mb: 3 }}
       >
         Back
@@ -114,7 +114,7 @@ const AnimeDetailPages = () => {
             {/* Image */}
             <Box
               component="img"
-              src={images?.jpg?.large_image_url}
+              src={images.jpg.large_image_url}
               alt={title}
               sx={{
                 width: "100%",
@@ -145,7 +145,7 @@ const AnimeDetailPages = () => {
                 }}
               >
                 <StarIcon sx={{ fontSize: 32 }} />
-                {score || "N/A"}
+                {score ?? "N/A"}
               </Typography>
               <Typography
                 variant="body2"
@@ -173,7 +173,7 @@ const AnimeDetailPages = () => {
                     fontWeight={600}
                     sx={{ color: "rgba(255, 255, 255, 0.95)" }}
                   >
-                    #{rank || "N/A"}
+                    #{rank ?? "N/A"}
                   </Typography>
                 </Box>
                 <Box
@@ -194,7 +194,7 @@ const AnimeDetailPages = () => {
                     fontWeight={600}
                     sx={{ color: "rgba(255, 255, 255, 0.95)" }}
                   >
-                    #{popularity || "N/A"}
+                    #{popularity ?? "N/A"}
                   </Typography>
                 </Box>
               </Stack>
@@ -243,7 +243,7 @@ const AnimeDetailPages = () => {
             </Grid>
 
             {/* Streaming Services */}
-            {streaming && streaming.length > 0 && (
+            {streaming.length > 0 && (
               <GlassBox sx={{ p: 3 }}>
                 <Typography
                   variant="h6"
@@ -260,7 +260,7 @@ const AnimeDetailPages = () => {
                   Watch On
                 </Typography>
                 <Stack spacing={1}>
-                  {streaming.slice(0, 5).map((service: any, index: any) => (
+                  {streaming.slice(0, 5).map((service, index: number) => (
                     <Link
                       key={index}
                       href={service.url}
@@ -342,7 +342,7 @@ const AnimeDetailPages = () => {
               <StatsChip color="#fbbf24">
                 <StarIcon sx={{ color: "#fbbf24", fontSize: 20 }} />
                 <Typography variant="body1" fontWeight={600} color="white">
-                  {score || "N/A"}
+                  {score ?? "N/A"}
                 </Typography>
               </StatsChip>
 
@@ -357,14 +357,14 @@ const AnimeDetailPages = () => {
                 <CalendarTodayIcon sx={{ color: "#8b5cf6", fontSize: 20 }} />
                 <Typography variant="body1" fontWeight={600} color="white">
                   {season && year
-                    ? `${season.charAt(0).toUpperCase() + season.slice(1)} ${year}`
-                    : year || "N/A"}
+                    ? `${season.charAt(0).toUpperCase() + season.slice(1)} ${String(year)}`
+                    : (year ?? "N/A")}
                 </Typography>
               </StatsChip>
 
               <StatsChip color="#06b6d4">
                 <Typography variant="body1" fontWeight={600} color="white">
-                  {episodes || "?"} Episodes
+                  {episodes ?? "?"} Episodes
                 </Typography>
               </StatsChip>
             </Stack>
@@ -384,7 +384,7 @@ const AnimeDetailPages = () => {
                     fontWeight={600}
                     sx={{ color: "rgba(255, 255, 255, 0.95)" }}
                   >
-                    {status || "N/A"}
+                    {status ?? "N/A"}
                   </Typography>
                 </Grid>
 
@@ -400,7 +400,7 @@ const AnimeDetailPages = () => {
                     fontWeight={600}
                     sx={{ color: "rgba(255, 255, 255, 0.95)" }}
                   >
-                    {duration || "N/A"}
+                    {duration ?? "N/A"}
                   </Typography>
                 </Grid>
 
@@ -416,7 +416,7 @@ const AnimeDetailPages = () => {
                     fontWeight={600}
                     sx={{ color: "rgba(255, 255, 255, 0.95)" }}
                   >
-                    {rating || "N/A"}
+                    {rating ?? "N/A"}
                   </Typography>
                 </Grid>
 
@@ -432,7 +432,7 @@ const AnimeDetailPages = () => {
                     fontWeight={600}
                     sx={{ color: "rgba(255, 255, 255, 0.95)" }}
                   >
-                    {source || "N/A"}
+                    {source ?? "N/A"}
                   </Typography>
                 </Grid>
 
@@ -448,11 +448,11 @@ const AnimeDetailPages = () => {
                     fontWeight={600}
                     sx={{ color: "rgba(255, 255, 255, 0.95)" }}
                   >
-                    {aired?.string || "N/A"}
+                    {aired?.string ?? "N/A"}
                   </Typography>
                 </Grid>
 
-                {broadcast?.string && (
+                {broadcast.string && (
                   <Grid size={{ xs: 12, sm: 4, lg: 6 }}>
                     <Typography
                       variant="caption"
@@ -489,7 +489,7 @@ const AnimeDetailPages = () => {
                     color: "rgba(255, 255, 255, 0.9)",
                   }}
                 >
-                  {synopsis || "No synopsis available."}
+                  {synopsis ?? "No synopsis available."}
                 </Typography>
               </GlassBox>
             </Box>
@@ -520,7 +520,7 @@ const AnimeDetailPages = () => {
 
             {/* Genres, Demographics, Themes */}
             <Grid container spacing={3}>
-              {genres && genres.length > 0 && (
+              {genres.length > 0 && (
                 <Grid size={{ xs: 12, lg: 6 }}>
                   <Typography
                     variant="h6"
@@ -540,7 +540,7 @@ const AnimeDetailPages = () => {
                 </Grid>
               )}
 
-              {demographics && demographics.length > 0 && (
+              {demographics.length > 0 && (
                 <Grid size={{ xs: 12, lg: 6 }}>
                   <Typography
                     variant="h6"
@@ -560,7 +560,7 @@ const AnimeDetailPages = () => {
                 </Grid>
               )}
 
-              {themes && themes.length > 0 && (
+              {themes.length > 0 && (
                 <Grid size={{ xs: 12 }}>
                   <Typography
                     variant="h6"
@@ -582,7 +582,7 @@ const AnimeDetailPages = () => {
             </Grid>
 
             {/* Studios */}
-            {studios && studios.length > 0 && (
+            {studios.length > 0 && (
               <Box>
                 <Typography
                   variant="h6"
@@ -602,7 +602,7 @@ const AnimeDetailPages = () => {
             )}
 
             {/* Producers */}
-            {producers && producers.length > 0 && (
+            {producers.length > 0 && (
               <Box>
                 <Typography
                   variant="h6"
@@ -622,7 +622,7 @@ const AnimeDetailPages = () => {
             )}
 
             {/* Licensors */}
-            {licensors && licensors.length > 0 && (
+            {licensors.length > 0 && (
               <Box>
                 <Typography
                   variant="h6"
@@ -642,7 +642,7 @@ const AnimeDetailPages = () => {
             )}
 
             {/* Relations */}
-            {relations && relations.length > 0 && (
+            {relations.length > 0 && (
               <Box>
                 <Typography
                   variant="h6"

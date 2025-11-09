@@ -49,7 +49,7 @@ const LoadingGenres = () => (
       </HeaderBox>
 
       <Stack direction="row" spacing={1} sx={{ flexWrap: "wrap", gap: 1 }}>
-        {[...Array(12)].map((_, i) => (
+        {Array.from({ length: 12 }).map((_, i) => (
           <Skeleton
             key={i}
             variant="rounded"
@@ -123,7 +123,9 @@ const GenreFilter = () => {
             )}
             <GlassIconButton
               size="small"
-              onClick={() => setExpanded(!expanded)}
+              onClick={() => {
+                setExpanded(!expanded)
+              }}
               title={expanded ? "Collapse" : "Expand"}
             >
               {expanded ? <ExpandLessIcon /> : <ExpandMoreIcon />}
@@ -145,7 +147,9 @@ const GenreFilter = () => {
               <GlassChip
                 key={genre.mal_id}
                 label={genre.name}
-                onClick={() => handleGenreClick(genre.mal_id)}
+                onClick={() => {
+                  handleGenreClick(genre.mal_id)
+                }}
                 className={
                   selectedGenres.includes(genre.mal_id) ? "selected" : ""
                 }

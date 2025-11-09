@@ -28,7 +28,7 @@ const NotFoundIcon = styled(Box)(({ theme }) => ({
   },
 }))
 
-interface NotFoundStateProps {
+type NotFoundStateProps = {
   title?: string
   message?: string
   showSearchIcon?: boolean
@@ -44,14 +44,14 @@ const AnimeNotFoundPages = ({
   const navigate = useNavigate()
   const dispatch = useAppDispatch()
 
-  const handleBack = () => {
-    navigate(-1)
+  const handleBack = async () => {
+    await navigate(-1)
   }
 
-  const handleGoHome = () => {
+  const handleGoHome = async () => {
     dispatch(setSearchQuery(""))
     dispatch(setPage(1))
-    navigate(`/?page=1`)
+    await navigate(`/?page=1`)
   }
 
   return (
@@ -59,7 +59,7 @@ const AnimeNotFoundPages = ({
       {/* Back Button */}
       <ActionButton
         startIcon={<ArrowBackIcon />}
-        onClick={handleBack}
+        onClick={void handleBack}
         sx={{ mb: 3 }}
       >
         Back
@@ -110,7 +110,7 @@ const AnimeNotFoundPages = ({
 
         <ActionButton
           startIcon={<HomeIcon />}
-          onClick={onGoHome || handleGoHome}
+          onClick={onGoHome ?? handleGoHome}
           size="large"
           sx={{
             px: 4,

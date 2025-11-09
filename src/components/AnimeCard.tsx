@@ -13,7 +13,7 @@ import { grey, yellow } from "@mui/material/colors"
 import type { Anime } from "../types/anime.types"
 import { GenreChip, GradientChip } from "../styles/sharedStyle"
 
-interface AnimeCardProps {
+type AnimeCardProps = {
   anime: Anime
   onClick: (id: number) => void
 }
@@ -75,14 +75,18 @@ const ScoreBox = styled(Box)(({ theme }) => ({
 
 const AnimeCard = memo(({ anime, onClick }: AnimeCardProps) => {
   return (
-    <StyledCard onClick={() => onClick(anime.mal_id)}>
+    <StyledCard
+      onClick={() => {
+        onClick(anime.mal_id)
+      }}
+    >
       <GradientBorder className="gradient-border" />
 
       <Box sx={{ position: "relative", width: "100%" }}>
         <StyledCardMedia image={anime.images.webp.large_image_url} />
         {anime.score && (
           <ScoreBox>
-            <StarBorderIcon sx={{ fontSize: 16, color: yellow["A200"] }} />
+            <StarBorderIcon sx={{ fontSize: 16, color: yellow.A200 }} />
             <Typography variant="body2" fontWeight={700} fontSize="0.85rem">
               {anime.score.toFixed(1)}
             </Typography>
@@ -120,7 +124,10 @@ const AnimeCard = memo(({ anime, onClick }: AnimeCardProps) => {
           {anime.type && <GradientChip label={anime.type} size="small" />}
           {anime.year && <GradientChip label={anime.year} size="small" />}
           {anime.episodes && (
-            <GradientChip label={`${anime.episodes} eps`} size="small" />
+            <GradientChip
+              label={`${String(anime.episodes)} eps`}
+              size="small"
+            />
           )}
         </Stack>
 

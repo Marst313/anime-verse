@@ -47,9 +47,9 @@ export type Anime = {
   type: string | null
   source: string | null
   episodes: number | null
-  status: string
+  status: string | null
   airing: boolean
-  aired: {
+  aired?: {
     from: string | null
     to: string | null
     string: string
@@ -83,7 +83,7 @@ export type AnimeDetail = {
     string: string
   }
   relations: Relations[]
-  streaming: string[]
+  streaming: { url: string; name: string }[]
   external: string
   producers: Studio[]
   licensors: Studio[]

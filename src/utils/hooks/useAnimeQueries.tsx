@@ -13,8 +13,8 @@ export const animeKeys = {
 }
 
 export const useAnimeList = (
-  query: string = "",
-  page: number = 1,
+  query = "",
+  page = 1,
   genres: number[],
 ) => {
   const genresString = genresToString(genres)

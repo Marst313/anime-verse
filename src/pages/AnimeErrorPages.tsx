@@ -26,7 +26,7 @@ const ErrorIcon = styled(ErrorOutlineIcon)(({ theme }) => ({
   },
 }))
 
-interface ErrorStateProps {
+type ErrorStateProps = {
   message?: string
   onRetry?: () => void
   onGoHome?: () => void
@@ -40,14 +40,14 @@ const AnimeErrorPages = ({
   const navigate = useNavigate()
   const dispatch = useAppDispatch()
 
-  const handleBack = () => {
-    navigate(-1)
+  const handleBack = async () => {
+    await navigate(`/?page=1`)
   }
 
-  const handleGoHome = () => {
+  const handleGoHome = async () => {
     dispatch(setSearchQuery(""))
     dispatch(setPage(1))
-    navigate(`/?page=1`)
+    await navigate(`/?page=1`)
   }
 
   return (
@@ -55,7 +55,7 @@ const AnimeErrorPages = ({
       {/* Back Button */}
       <ActionButton
         startIcon={<ArrowBackIcon />}
-        onClick={handleBack}
+        onClick={void handleBack}
         sx={{ mb: 3 }}
       >
         Back
@@ -112,7 +112,7 @@ const AnimeErrorPages = ({
 
           <ActionButton
             startIcon={<HomeIcon />}
-            onClick={onGoHome || handleGoHome}
+            onClick={onGoHome ?? handleGoHome}
             sx={{
               "&:hover": {
                 background: theme =>

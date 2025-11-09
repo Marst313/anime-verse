@@ -74,7 +74,7 @@ const LoadingSkeleton = ({
               spacing={2}
               sx={{ mb: 4, flexWrap: "wrap", gap: 2 }}
             >
-              {[...Array(4)].map((_, i) => (
+              {Array.from({ length: 4 }).map((_, i) => (
                 <Skeleton
                   key={i}
                   variant="rounded"
@@ -94,7 +94,7 @@ const LoadingSkeleton = ({
               sx={{ mb: 2 }}
             />
 
-            {[...Array(5)].map((_, i) => (
+            {Array.from({ length: 5 }).map((_, i) => (
               <Skeleton
                 key={i}
                 variant="text"
@@ -118,7 +118,7 @@ const LoadingSkeleton = ({
               spacing={1}
               sx={{ flexWrap: "wrap", gap: 1 }}
             >
-              {[...Array(6)].map((_, i) => (
+              {Array.from({ length: 6 }).map((_, i) => (
                 <Skeleton
                   key={i}
                   variant="rounded"
@@ -147,7 +147,7 @@ const LoadingSkeleton = ({
   return (
     <Container maxWidth="xl" sx={{ py: 4 }}>
       <Grid container spacing={3}>
-        {[...Array(count)].map((_, index) => (
+        {Array.from({ length: count }).map((_, index) => (
           <Grid key={index} size={{ xs: 12, sm: 6, md: 4, lg: 3 }}>
             <Card
               sx={{
@@ -203,7 +203,7 @@ const LoadingSkeleton = ({
                 />
 
                 <Stack direction="row" spacing={1} mb={1.5}>
-                  {[...Array(3)].map((_, i) => (
+                  {Array.from({ length: 3 }).map((_, i) => (
                     <Skeleton
                       key={i}
                       variant="rounded"
@@ -220,7 +220,7 @@ const LoadingSkeleton = ({
                   flexWrap="wrap"
                   useFlexGap
                 >
-                  {[...Array(3)].map((_, i) => (
+                  {Array.from({ length: 3 }).map((_, i) => (
                     <Skeleton
                       key={i}
                       variant="rounded"

@@ -2,7 +2,7 @@ import { Typography, Link } from "@mui/material"
 import HomeIcon from "@mui/icons-material/Home"
 import { GlassBreadcrumbs } from "../styles/sharedStyle"
 
-interface BreadCrumbsProps {
+type BreadCrumbsProps = {
   title_english: string | null
   title: string
   handleBack: () => void

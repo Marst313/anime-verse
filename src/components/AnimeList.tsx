@@ -1,7 +1,7 @@
 import { Grid, Box, Container, Typography } from "@mui/material"
 
 import { PaginationComponents, LoadingSkeleton, AnimeCard } from "./"
-import { AnimeListProps } from "../types/anime.types"
+import type { AnimeListProps } from "../types/anime.types"
 import { EmptyStateContainer } from "../styles/sharedStyle"
 
 const AnimeList = ({

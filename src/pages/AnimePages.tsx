@@ -38,14 +38,14 @@ const AnimePages = () => {
     setSearchParams(params)
   }
 
-  const handleAnimeClick = (animeId: number) => {
+  const handleAnimeClick = async (animeId: number) => {
     const query = searchQuery ? `&s=${searchQuery}` : ""
-    navigate(`/${animeId}?page=${currentPage}${query}`)
+    await navigate(`/${String(animeId)}?page=${String(currentPage)}${query}`)
   }
 
   useEffect(() => {
-    const pageParam = Number(searchParams.get("page")) || 1
-    const searchParam = searchParams.get("s") || ""
+    const pageParam = Number(searchParams.get("page") ?? "1")
+    const searchParam = searchParams.get("s") ?? ""
 
     if (pageParam !== currentPage) {
       dispatch(setPage(pageParam))
@@ -54,7 +54,7 @@ const AnimePages = () => {
     if (searchParam !== searchQuery) {
       dispatch(setSearchQuery(searchParam))
     }
-  }, [searchParams, currentPage, searchQuery])
+  }, [searchParams, currentPage, searchQuery, dispatch])
 
   return (
     <div className="App">
@@ -76,10 +76,10 @@ const AnimePages = () => {
         <AnimeList
           animeList={data?.data}
           currentPage={currentPage}
-          totalPages={data?.pagination.last_visible_page || 1}
+          totalPages={data?.pagination.last_visible_page ?? 1}
           isLoading={isFetching}
           onPageChange={handlePageChange}
-          onAnimeClick={handleAnimeClick}
+          onAnimeClick={id => void handleAnimeClick(id)}
         />
       </Container>
 

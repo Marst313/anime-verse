@@ -27,7 +27,9 @@ const NotFoundPage = () => {
       <Button
         variant="contained"
         color="primary"
-        onClick={() => navigate("/")}
+        onClick={() => {
+          void navigate("/")
+        }}
         sx={{ textTransform: "none", borderRadius: 2 }}
       >
         Back to Home

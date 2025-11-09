@@ -89,7 +89,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 const SearchBar = () => {
   const dispatch = useAppDispatch()
   const { searchQuery, isLoading } = useAppSelector(state => state.anime)
-  const [_, setSearchParams] = useSearchParams()
+  const [, setSearchParams] = useSearchParams()
 
   const [inputValue, setInputValue] = useState(searchQuery)
 

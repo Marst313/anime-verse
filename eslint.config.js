@@ -4,9 +4,10 @@ import prettierConfig from "eslint-config-prettier/flat"
 import reactPlugin from "eslint-plugin-react"
 import reactHooksPlugin from "eslint-plugin-react-hooks"
 import globals from "globals"
-import { config, configs } from "typescript-eslint"
+import tseslint from "typescript-eslint"
+import { defineConfig } from "eslint/config"
 
-const eslintConfig = config(
+export default defineConfig([
   {
     name: "global-ignores",
     ignores: [
@@ -25,11 +26,13 @@ const eslintConfig = config(
     name: `${js.meta.name}/recommended`,
     ...js.configs.recommended,
   },
-  configs.strictTypeChecked,
-  configs.stylisticTypeChecked,
+
+  ...tseslint.configs.strictTypeChecked,
+  ...tseslint.configs.stylisticTypeChecked,
+
   vitestPlugin.configs.recommended,
   {
-    name: "eslint-plugin-react/jsx-runtime",
+    name: "react/jsx-runtime",
     ...reactPlugin.configs.flat["jsx-runtime"],
   },
   reactHooksPlugin.configs["recommended-latest"],
@@ -50,12 +53,16 @@ const eslintConfig = config(
       vitest: {
         typecheck: true,
       },
+      react: {
+        version: "detect",
+      },
     },
     rules: {
-      "no-undef": [0],
-      "@typescript-eslint/consistent-type-definitions": [2, "type"],
+      "no-undef": "off",
+
+      "@typescript-eslint/consistent-type-definitions": ["error", "type"],
       "@typescript-eslint/consistent-type-imports": [
-        2,
+        "error",
         {
           prefer: "type-imports",
           fixStyle: "separate-type-imports",
@@ -63,7 +70,7 @@ const eslintConfig = config(
         },
       ],
       "no-restricted-imports": [
-        2,
+        "error",
         {
           paths: [
             {
@@ -79,6 +86,4 @@ const eslintConfig = config(
   },
 
   prettierConfig,
-)
-
-export default eslintConfig
+])
