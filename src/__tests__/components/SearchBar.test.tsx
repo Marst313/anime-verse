@@ -78,7 +78,7 @@ describe("SearchBar Component", () => {
     renderWithProviders()
     const input = screen.getByPlaceholderText(
       "Search anime...",
-    )
+    ) as HTMLInputElement
 
     fireEvent.change(input, { target: { value: "one piece" } })
     expect(input.value).toBe("one piece")
@@ -88,7 +88,7 @@ describe("SearchBar Component", () => {
     renderWithProviders({ searchQuery: "naruto" })
     const input = screen.getByPlaceholderText(
       "Search anime...",
-    )
+    ) as HTMLInputElement
     const clearButton = screen.getByLabelText("clear search")
 
     fireEvent.click(clearButton)
