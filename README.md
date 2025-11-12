@@ -106,6 +106,7 @@ animeverse/
 | ------------------- | ------------------------------------------------------------- |
 | ✅ **Genre Filter** | Allows users to filter anime by selected genres dynamically   |
 | ✅ **Pagination**   | Supports server-side pagination with page state synced to URL |
+| ✅ **Caching**      | Cache API responses using React Query for improved performance and reduced API calls |
 
 ---
 
