@@ -22,7 +22,7 @@ const NotFoundPage = () => {
         404
       </Typography>
       <Typography variant="h5" sx={{ mb: 3 }}>
-        Oops! The page you’re looking for doesn’t exist.
+        Oops! The page you looking for doesnt exist.
       </Typography>
       <Button
         variant="contained"

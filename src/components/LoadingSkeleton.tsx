@@ -145,7 +145,7 @@ const LoadingSkeleton = ({
   }
 
   return (
-    <Container maxWidth="xl" sx={{ py: 4 }}>
+    <Container maxWidth="xl" sx={{ py: 4 }} data-testid="loading-skeleton">
       <Grid container spacing={3}>
         {Array.from({ length: count }).map((_, index) => (
           <Grid key={index} size={{ xs: 12, sm: 6, md: 4, lg: 3 }}>

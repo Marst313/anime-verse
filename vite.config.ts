@@ -9,7 +9,7 @@ export default defineConfig({
 
   server: {
     open: true,
-    port:4000
+    port: 4000,
   },
 
   test: {
@@ -24,6 +24,6 @@ export default defineConfig({
 
     globals: true,
     watch: false,
-    setupFiles: ["./src/setupTests.ts"],
+    setupFiles: ["./src/__tests__/setupTests.ts"],
   },
 })

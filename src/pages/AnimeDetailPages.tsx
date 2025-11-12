@@ -38,10 +38,10 @@ const AnimeDetailPages = () => {
 
   const { data: selectedAnime, isLoading, error } = useAnimeDetail(Number(id))
 
-  const handleBack = async () => {
+  const handleBack = () => {
     dispatch(setSearchQuery(""))
     dispatch(setPage(1))
-    await navigate(`/?page=1`)
+    navigate(`/?page=1`)
   }
 
   if (isLoading) {
@@ -95,13 +95,13 @@ const AnimeDetailPages = () => {
       <BreadCrumbs
         title={title}
         title_english={title_english}
-        handleBack={() => void handleBack}
+        handleBack={handleBack}
       />
 
       {/* Back Button */}
       <GlassButton
         startIcon={<ArrowBackIcon />}
-        onClick={void handleBack}
+        onClick={handleBack}
         sx={{ mb: 3 }}
       >
         Back
